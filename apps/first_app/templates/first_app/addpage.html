@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>index</title>
+  </head>
+  <body>
+    {% for error in messages %}
+    <p>{{ error }}</p>
+    {% endfor %}
+    {{ current_user }}
+    <form id="a" action='/add' method='POST'>
+      {% csrf_token %}
+      <p>Destination: <input type='text' name='destination'></p>
+      <p>Description: <input type='text' name='description'></p>
+      <p>Travel date from: <input type='date' name='destfrom'></p>
+      <p>Travel date to: <input type='date' name='destto'></p>
+      <input type='hidden' name='user_id' value="{{ current_user }}">
+      <input type='submit' name='post' value='Post'>
+    </form>
+    <a href="/travels">Home</a>
+  </body>
+</html>

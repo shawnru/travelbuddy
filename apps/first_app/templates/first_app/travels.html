@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>index</title>
+  </head>
+  <body>
+    {% for a in current_user %}
+    <h1>Hello, {{ a.name }}!</h1>
+    {% endfor %}
+    {% for b in curr_users_travel_log %}
+    <p> {{ b.destination }} {{ b.description }} {{ b.destfrom }} {{ b.destto }}</p>
+    {% endfor %}
+    {% for c in all_users_travel_log %}
+    <p> {{ c.destination }} {{ c.description }} {{ c.destfrom }} {{ c.destto }}
+      {% if not c.id == request.session.id %}
+      <form id="a" action='/join/{{ c.id }}' method='POST'>
+      {% csrf_token %}
+      <input type='hidden' name='id' value='{{ c.id }}'>
+      <input type='hidden' name='user_id' value='{{ request.session.id }}'>
+      <input type='submit' name='join' value='Join'>
+      </form></p>
+      {% endif %}
+    {% endfor %}
+    <form id="a" action='/logout' method='POST'>
+      {% csrf_token %}
+      <input type='submit' name='logout' value='Log-Out'>
+    </form>
+    <a href="/addpage">Add Travel Plan</a>
+
+  </body>
+</html>

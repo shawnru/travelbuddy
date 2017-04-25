@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>index</title>
+  </head>
+  <body>
+
+    {% for a in trip_deets %}
+    <h1>{{ a.destination }}</h1>
+    <p>{{ a.description }}</p>
+    <p>{{ a.destfrom }}</p>
+    <p>{{ a.destto }}</p>
+    <p>Other users joining the trip:</p>
+    <p>{{ a.current_travelers.name }}</p>
+    {% endfor %}
+    <form id="a" action='/logout' method='POST'>
+      {% csrf_token %}
+      <input type='submit' name='logout' value='Log-Out'>
+    </form>
+    <a href="/travels">Home</a>
+
+  </body>
+</html>
